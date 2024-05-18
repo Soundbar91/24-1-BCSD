@@ -4,6 +4,7 @@ import com.soundbar91.springMVC.dto.Article;
 import com.soundbar91.springMVC.repository.MapArticleRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
@@ -20,5 +21,12 @@ public class ArticlesController {
     @GetMapping("/articles")
     public ResponseEntity<List<Article>> getAllArticles() {
         return ResponseEntity.ok().body(articleRepository.getAllArticles());
+    }
+
+    @GetMapping("/post")
+    public String postAllArticles(Model model) {
+        List<Article> articles = articleRepository.getAllArticles();
+        model.addAttribute("articlesList", articles);
+        return "articles";
     }
 }
