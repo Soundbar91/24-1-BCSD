@@ -2,10 +2,7 @@ package com.soundbar91.springMVC.repository;
 
 import com.soundbar91.springMVC.dto.Article;
 
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MapArticleRepository implements ArticleRepository {
 
@@ -13,8 +10,8 @@ public class MapArticleRepository implements ArticleRepository {
     private long currentId = 1;
 
     @Override
-    public Collection<Article> getAllArticles() {
-        return articles.values();
+    public List<Article> getAllArticles() {
+        return new ArrayList<>(articles.values());
     }
 
     @Override
