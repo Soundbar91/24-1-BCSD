@@ -2,6 +2,9 @@ package com.soundbar91.springMVC.repository;
 
 import com.soundbar91.springMVC.dto.Article;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 public class MapArticleRepository implements ArticleRepository {
@@ -32,7 +35,7 @@ public class MapArticleRepository implements ArticleRepository {
             Article article = articles.get(id);
             article.setTitle(updatedArticle.getTitle());
             article.setContent(updatedArticle.getContent());
-            article.setModifyDate(Calendar.getInstance());
+            article.setModifyDate(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
             articles.put(id, article);
 
             return true;

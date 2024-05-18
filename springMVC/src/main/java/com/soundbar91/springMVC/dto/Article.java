@@ -1,6 +1,8 @@
 package com.soundbar91.springMVC.dto;
 
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Article {
     private long articleId;
@@ -8,20 +10,11 @@ public class Article {
     private long boardId;
     private String title;
     private String content;
-    private Calendar writerDate;
-    private Calendar modifyDate;
+    private LocalDateTime writerDate;
+    private LocalDateTime modifyDate;
 
     public Article() {
-    }
-
-    public Article(String writerId, long boardId, String title, String content) {
-        this.writerId = writerId;
-        this.boardId = boardId;
-        this.title = title;
-        this.content = content;
-
-        writerDate = Calendar.getInstance();
-        modifyDate = null;
+        this.writerDate = LocalDateTime.of(LocalDate.now(), LocalTime.now());
     }
 
     public long getArticleId() {
@@ -64,19 +57,19 @@ public class Article {
         this.content = content;
     }
 
-    public Calendar getWriterDate() {
+    public LocalDateTime getWriterDate() {
         return writerDate;
     }
 
-    public void setWriterDate(Calendar writerDate) {
+    public void setWriterDate(LocalDateTime writerDate) {
         this.writerDate = writerDate;
     }
 
-    public Calendar getModifyDate() {
+    public LocalDateTime getModifyDate() {
         return modifyDate;
     }
 
-    public void setModifyDate(Calendar modifyDate) {
+    public void setModifyDate(LocalDateTime modifyDate) {
         this.modifyDate = modifyDate;
     }
 }
