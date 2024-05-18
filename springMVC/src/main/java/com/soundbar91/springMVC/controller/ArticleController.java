@@ -2,6 +2,7 @@ package com.soundbar91.springMVC.controller;
 
 import com.soundbar91.springMVC.dto.Article;
 import com.soundbar91.springMVC.repository.MapArticleRepository;
+import com.soundbar91.springMVC.service.ArticleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +13,10 @@ import java.util.Optional;
 @RequestMapping("/article")
 public class ArticleController {
 
-    private final MapArticleRepository articleRepository;
+    private final ArticleService articleService;
 
     public ArticleController() {
-        this.articleRepository = new MapArticleRepository();
+        this.articleService = new ArticleService();
     }
 
     @GetMapping("/{id}")
