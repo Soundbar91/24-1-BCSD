@@ -1,8 +1,10 @@
 package com.soundbar91.springMVC.controller;
 
+import com.soundbar91.springMVC.dto.Article;
 import com.soundbar91.springMVC.repository.MapArticleRepository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -14,6 +16,31 @@ public class ArticleController {
 
     public ArticleController() {
         this.articleRepository = new MapArticleRepository();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
+        return Optional.ofNullable(articleRepository.getArticleById(id))
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<Article> createArticle(@RequestBody Article article) {
+        articleRepository.addArticle(article);
+        return ResponseEntity.status(HttpStatus.CREATED).body(article);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Article> updateArticle(@PathVariable Long id, @RequestBody Article updatedArticle) {
+        return articleRepository.updateArticle(id, updatedArticle) ?
+                ResponseEntity.ok(articleRepository.getArticleById(id)) : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteArticle(@PathVariable Long id) {
+        return articleRepository.deleteArticle(id) ?
+                ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }
 
