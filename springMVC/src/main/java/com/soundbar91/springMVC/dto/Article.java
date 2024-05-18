@@ -11,8 +11,10 @@ public class Article {
     private Calendar writerDate;
     private Calendar modifyDate;
 
-    public Article(long articleId, String writerId, long boardId, String title, String content) {
-        this.articleId = articleId;
+    public Article() {
+    }
+
+    public Article(String writerId, long boardId, String title, String content) {
         this.writerId = writerId;
         this.boardId = boardId;
         this.title = title;
