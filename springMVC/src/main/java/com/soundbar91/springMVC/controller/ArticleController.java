@@ -6,16 +6,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/article")
+@RequestMapping(value = {"/article", "/articles"})
 public class ArticleController {
 
     private final MapArticleRepository articleRepository;
 
     public ArticleController() {
         this.articleRepository = new MapArticleRepository();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Article>> getAllArticles() {
+        return ResponseEntity.ok().body(articleRepository.getAllArticles());
     }
 
     @GetMapping("/{id}")
