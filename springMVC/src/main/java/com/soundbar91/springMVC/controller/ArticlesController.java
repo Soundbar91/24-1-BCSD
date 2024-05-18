@@ -2,6 +2,7 @@ package com.soundbar91.springMVC.controller;
 
 import com.soundbar91.springMVC.dto.Article;
 import com.soundbar91.springMVC.repository.MapArticleRepository;
+import com.soundbar91.springMVC.service.ArticleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +13,10 @@ import java.util.List;
 @Controller
 public class ArticlesController {
 
-    private final MapArticleRepository articleRepository;
+    private final ArticleService articleService;
 
     public ArticlesController() {
-        this.articleRepository = new MapArticleRepository();
+        this.articleService = new ArticleService();
     }
 
     @GetMapping("/articles")
