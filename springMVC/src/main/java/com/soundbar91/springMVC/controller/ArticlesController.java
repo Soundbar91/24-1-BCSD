@@ -26,7 +26,7 @@ public class ArticlesController {
 
     @GetMapping("/post")
     public String postAllArticles(Model model) {
-        List<Article> articles = articleRepository.getAllArticles();
+        List<Article> articles = articleService.getAllArticles();
         model.addAttribute("articlesList", articles);
         return "articles";
     }
