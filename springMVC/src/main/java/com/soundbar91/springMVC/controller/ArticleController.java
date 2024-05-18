@@ -21,9 +21,8 @@ public class ArticleController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Article> getArticleById(@PathVariable("id") Long id) {
-        return Optional.ofNullable(articleService.getArticleById(id))
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        Article article = articleService.getArticleById(id);
+        return article == null ? ResponseEntity.notFound().build() : ResponseEntity.ok().body(article);
     }
 
     @PostMapping
