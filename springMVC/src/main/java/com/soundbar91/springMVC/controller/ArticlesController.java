@@ -21,7 +21,7 @@ public class ArticlesController {
 
     @GetMapping("/articles")
     public ResponseEntity<List<Article>> getAllArticles() {
-        return ResponseEntity.ok().body(articleRepository.getAllArticles());
+        return ResponseEntity.ok().body(articleService.getAllArticles());
     }
 
     @GetMapping("/post")

@@ -4,6 +4,8 @@ import com.soundbar91.springMVC.dto.Article;
 import com.soundbar91.springMVC.repository.MapArticleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ArticleService {
 
@@ -27,5 +29,9 @@ public class ArticleService {
 
     public boolean deleteArticle(Long id) {
         return articleRepository.deleteArticle(id);
+    }
+
+    public List<Article> getAllArticles() {
+        return articleRepository.getAllArticles();
     }
 }
