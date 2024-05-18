@@ -21,26 +21,26 @@ public class ArticleController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Article> getArticleById(@PathVariable("id") Long id) {
-        return Optional.ofNullable(articleRepository.getArticleById(id))
+        return Optional.ofNullable(articleService.getArticleById(id))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<Article> createArticle(@RequestBody Article article) {
-        articleRepository.addArticle(article);
+        articleService.addArticle(article);
         return ResponseEntity.status(HttpStatus.CREATED).body(article);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Article> updateArticle(@PathVariable("id") Long id, @RequestBody Article updatedArticle) {
-        return articleRepository.updateArticle(id, updatedArticle) ?
-                ResponseEntity.ok(articleRepository.getArticleById(id)) : ResponseEntity.notFound().build();
+        return articleService.updateArticle(id, updatedArticle) ?
+                ResponseEntity.ok(articleService.getArticleById(id)) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteArticle(@PathVariable("id") Long id) {
-        return articleRepository.deleteArticle(id) ?
+        return articleService.deleteArticle(id) ?
                 ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }

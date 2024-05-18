@@ -1,5 +1,6 @@
 package com.soundbar91.springMVC.service;
 
+import com.soundbar91.springMVC.dto.Article;
 import com.soundbar91.springMVC.repository.MapArticleRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +13,19 @@ public class ArticleService {
         this.articleRepository = new MapArticleRepository();
     }
 
+    public Article getArticleById(Long id) {
+        return articleRepository.getArticleById(id);
+    }
 
+    public void addArticle(Article article) {
+        articleRepository.addArticle(article);
+    }
+
+    public boolean updateArticle(Long id, Article article) {
+        return articleRepository.updateArticle(id, article);
+    }
+
+    public boolean deleteArticle(Long id) {
+        return articleRepository.deleteArticle(id);
+    }
 }
