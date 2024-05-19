@@ -19,11 +19,6 @@ public class ArticlesController {
         this.articleService = new ArticleService();
     }
 
-    @GetMapping("/articles")
-    public ResponseEntity<List<Article>> getAllArticles() {
-        return ResponseEntity.ok().body(articleService.getAllArticles());
-    }
-
     @GetMapping("/post")
     public String postAllArticles(Model model) {
         List<Article> articles = articleService.getAllArticles();

@@ -7,16 +7,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/article")
+@RequestMapping("/articles")
 public class ArticleController {
 
     private final ArticleService articleService;
 
     public ArticleController() {
         this.articleService = new ArticleService();
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Article>> getAllArticles() {
+        return ResponseEntity.ok().body(articleService.getAllArticles());
     }
 
     @GetMapping("/{id}")
