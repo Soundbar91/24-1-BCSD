@@ -17,6 +17,14 @@ public class ArticleDTO {
         this.writerDate = LocalDateTime.now();
     }
 
+    public long getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(long articleId) {
+        this.articleId = articleId;
+    }
+
     public String getTitle() {
         return title;
     }
