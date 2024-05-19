@@ -1,12 +1,12 @@
 package com.soundbar91.springMVC.dto;
 
-public class Member {
+public class MemberDTO {
     private String memberId;
     private String memberName;
     private String memberEmail;
     private String memberPassWord;
 
-    public Member(String memberId, String memberName, String memberEmail, String memberPassWord) {
+    public MemberDTO(String memberId, String memberName, String memberEmail, String memberPassWord) {
         this.memberId = memberId;
         this.memberName = memberName;
         this.memberEmail = memberEmail;
