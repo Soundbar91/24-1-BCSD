@@ -1,14 +1,12 @@
 package com.soundbar91.springMVC.controller;
 
 import com.soundbar91.springMVC.dto.Article;
-import com.soundbar91.springMVC.repository.MapArticleRepository;
 import com.soundbar91.springMVC.service.ArticleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/articles")
