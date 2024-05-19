@@ -1,9 +1,7 @@
 package com.soundbar91.springMVC.controller;
 
 import com.soundbar91.springMVC.dto.Article;
-import com.soundbar91.springMVC.repository.MapArticleRepository;
 import com.soundbar91.springMVC.service.ArticleService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-public class ArticlesController {
+public class PostController {
 
     private final ArticleService articleService;
 
-    public ArticlesController() {
+    public PostController() {
         this.articleService = new ArticleService();
     }
 
