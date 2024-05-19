@@ -2,9 +2,7 @@ package com.soundbar91.springMVC.entity;
 
 import com.soundbar91.springMVC.dto.ArticleDTO;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Article {
     private long articleId;
@@ -16,10 +14,11 @@ public class Article {
     private LocalDateTime modifyDate;
 
     public Article(ArticleDTO articleDTO, long boardId) {
-        this.articleId = articleDTO.get
+        this.articleId = articleDTO.getArticleId();
+        this.writerId = articleDTO.getAuthor();
+        this.boardId = boardId;
         this.title = articleDTO.getTitle();
         this.content = articleDTO.getContent();
-        this.writerId = articleDTO.getAuthor();
         this.writerDate = articleDTO.getWriterDate();
         this.modifyDate = null;
     }
