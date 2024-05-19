@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+</head>
+<body>
+<tr th:each = "entry : ${articlesWithBoard}">
+    <td th:text = "${entry.key}"></td>
+    <td>
+        <table class="table">
+            <tr th:each="article : ${entry.value}">
+                <td th:text = "${article.getTitle()}"></td>
+                <td th:text = "${article.getAuthor()}"></td>
+                <td th:text = "|${article.getWriteDate().getYear()}-${article.getWriteDate().getMonthValue()}-${article.getWriteDate().getDayOfMonth()}|"></td>
+                <td th:text = "${article.getContent()}"></td><br>
+            </tr>
+        </table>
+    </td>
+</tr>
+</body>
+</html>

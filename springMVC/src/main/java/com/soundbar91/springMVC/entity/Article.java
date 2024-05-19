@@ -1,49 +1,50 @@
 package com.soundbar91.springMVC.entity;
 
-import com.soundbar91.springMVC.dto.ArticleDTO;
-
 import java.time.LocalDateTime;
 
 public class Article {
-    private long articleId;
-    private String writerId;
-    private long boardId;
+    private Long id;
+    private Long authorId;
+    private Long boardId;
     private String title;
     private String content;
-    private LocalDateTime writerDate;
-    private LocalDateTime modifyDate;
+    private LocalDateTime writeDate;
+    private LocalDateTime modifiedDate;
 
-    public Article(ArticleDTO articleDTO, long boardId) {
-        this.articleId = articleDTO.getArticleId();
-        this.writerId = articleDTO.getAuthor();
+    public Article() {
+    }
+
+    public Article(Long authorId, Long boardId, String title, String content) {
+        this.authorId = authorId;
         this.boardId = boardId;
-        this.title = articleDTO.getTitle();
-        this.content = articleDTO.getContent();
-        this.writerDate = articleDTO.getWriterDate();
-        this.modifyDate = null;
+        this.title = title;
+        this.content = content;
+
+        this.writeDate = LocalDateTime.now();
+        this.modifiedDate = LocalDateTime.now();
     }
 
-    public long getArticleId() {
-        return articleId;
+    public Long getId() {
+        return id;
     }
 
-    public void setArticleId(long articleId) {
-        this.articleId = articleId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getWriterId() {
-        return writerId;
+    public Long getAuthorId() {
+        return authorId;
     }
 
-    public void setWriterId(String writerId) {
-        this.writerId = writerId;
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 
-    public long getBoardId() {
+    public Long getBoardId() {
         return boardId;
     }
 
-    public void setBoardId(long boardId) {
+    public void setBoardId(Long boardId) {
         this.boardId = boardId;
     }
 
@@ -63,19 +64,19 @@ public class Article {
         this.content = content;
     }
 
-    public LocalDateTime getWriterDate() {
-        return writerDate;
+    public LocalDateTime getWriteDate() {
+        return writeDate;
     }
 
-    public void setWriterDate(LocalDateTime writerDate) {
-        this.writerDate = writerDate;
+    public void setWriteDate(LocalDateTime writeDate) {
+        this.writeDate = writeDate;
     }
 
-    public LocalDateTime getModifyDate() {
-        return modifyDate;
+    public LocalDateTime getModifiedDate() {
+        return modifiedDate;
     }
 
-    public void setModifyDate(LocalDateTime modifyDate) {
-        this.modifyDate = modifyDate;
+    public void setModifiedDate(LocalDateTime modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 }

@@ -1,59 +1,49 @@
 package com.soundbar91.springMVC.entity;
 
-import com.soundbar91.springMVC.dto.MemberDTO;
-
 public class Member {
-    private long id;
-    private String memberId;
-    private String memberName;
-    private String memberEmail;
-    private String memberPassWord;
+    private Long id;
+    private String name;
+    private String email;
+    private String password;
 
-    public Member(long id, MemberDTO memberDTO) {
-        this.id = id;
-        this.memberId = memberDTO.getMemberId();
-        this.memberName = memberDTO.getMemberName();
-        this.memberEmail = memberDTO.getMemberEmail();
-        this.memberPassWord = memberDTO.getMemberPassWord();
+    public Member() {
     }
 
-    public long getId() {
+    public Member(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getMemberId() {
-        return memberId;
+    public String getName() {
+        return name;
     }
 
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getMemberName() {
-        return memberName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getMemberEmail() {
-        return memberEmail;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMemberEmail(String memberEmail) {
-        this.memberEmail = memberEmail;
-    }
-
-    public String getMemberPassWord() {
-        return memberPassWord;
-    }
-
-    public void setMemberPassWord(String memberPassWord) {
-        this.memberPassWord = memberPassWord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

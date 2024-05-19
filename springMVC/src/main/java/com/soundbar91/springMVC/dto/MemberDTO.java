@@ -1,50 +1,28 @@
 package com.soundbar91.springMVC.dto;
 
 public class MemberDTO {
-    private String memberId;
-    private String memberName;
-    private String memberEmail;
-    private String memberPassWord;
+    private String name;
+    private String email;
+    private String password;
 
-    public MemberDTO() {
+    private MemberDTO() {
     }
 
-    public MemberDTO(String memberId, String memberName, String memberEmail, String memberPassWord) {
-        this.memberId = memberId;
-        this.memberName = memberName;
-        this.memberEmail = memberEmail;
-        this.memberPassWord = memberPassWord;
+    public MemberDTO(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
-    public String getMemberId() {
-        return memberId;
+    public String getName() {
+        return name;
     }
 
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
+    public String getEmail() {
+        return email;
     }
 
-    public String getMemberName() {
-        return memberName;
-    }
-
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
-    }
-
-    public String getMemberEmail() {
-        return memberEmail;
-    }
-
-    public void setMemberEmail(String memberEmail) {
-        this.memberEmail = memberEmail;
-    }
-
-    public String getMemberPassWord() {
-        return memberPassWord;
-    }
-
-    public void setMemberPassWord(String memberPassWord) {
-        this.memberPassWord = memberPassWord;
+    public String getPassword() {
+        return password;
     }
 }
