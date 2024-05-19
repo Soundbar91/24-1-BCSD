@@ -3,6 +3,7 @@ package com.soundbar91.springMVC.dto;
 import java.time.LocalDateTime;
 
 public class ArticleDTO {
+    private long articleId;
     private String title;
     private String author;
     private String content;
