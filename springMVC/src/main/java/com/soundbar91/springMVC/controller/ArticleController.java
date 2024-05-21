@@ -21,7 +21,7 @@ public class ArticleController {
         this.articleService = new ArticleService();
     }
 
-    @GetMapping("/post")
+    @GetMapping("/posts")
     public String getAllArticlesPost(Model model) {
         Map<String, List<ResponseArticleDTO>> articlesWithBoard = articleService.getArticlesWithBoard();
         model.addAttribute("articlesWithBoard", articlesWithBoard);
