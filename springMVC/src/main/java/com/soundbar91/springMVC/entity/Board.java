@@ -4,9 +4,6 @@ public class Board {
     private Long id;
     private String title;
 
-    public Board() {
-    }
-
     public Board(String title) {
         this.title = title;
     }
@@ -23,7 +20,7 @@ public class Board {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void updateBoard(String title) {
         this.title = title;
     }
 }
