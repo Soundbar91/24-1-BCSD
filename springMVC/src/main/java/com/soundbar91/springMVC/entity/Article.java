@@ -11,9 +11,6 @@ public class Article {
     private LocalDateTime writeDate;
     private LocalDateTime modifiedDate;
 
-    public Article() {
-    }
-
     public Article(Long authorId, Long boardId, String title, String content) {
         this.authorId = authorId;
         this.boardId = boardId;
@@ -21,6 +18,12 @@ public class Article {
         this.content = content;
 
         this.writeDate = LocalDateTime.now();
+        this.modifiedDate = LocalDateTime.now();
+    }
+
+    public void updateArticle(String title, String content) {
+        this.title = title;
+        this.content = content;
         this.modifiedDate = LocalDateTime.now();
     }
 
@@ -36,47 +39,23 @@ public class Article {
         return authorId;
     }
 
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }
-
     public Long getBoardId() {
         return boardId;
-    }
-
-    public void setBoardId(Long boardId) {
-        this.boardId = boardId;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getContent() {
         return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public LocalDateTime getWriteDate() {
         return writeDate;
     }
 
-    public void setWriteDate(LocalDateTime writeDate) {
-        this.writeDate = writeDate;
-    }
-
     public LocalDateTime getModifiedDate() {
         return modifiedDate;
-    }
-
-    public void setModifiedDate(LocalDateTime modifiedDate) {
-        this.modifiedDate = modifiedDate;
     }
 }

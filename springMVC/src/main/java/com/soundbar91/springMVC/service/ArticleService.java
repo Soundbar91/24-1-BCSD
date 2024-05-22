@@ -5,7 +5,6 @@ import com.soundbar91.springMVC.dto.ResponseArticleDTO;
 import com.soundbar91.springMVC.entity.Article;
 import com.soundbar91.springMVC.repository.*;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 public class ArticleService {
@@ -24,12 +23,8 @@ public class ArticleService {
         Article articleById = articleRepository.getArticleById(id);
         if (articleById == null) return null;
 
-        return new ResponseArticleDTO(
-                articleById.getTitle(),
-                articleById.getContent(),
-                memberRepository.getMemberById(articleById.getAuthorId()).getName(),
-                articleById.getWriteDate()
-        );
+        String writer = memberRepository.getMemberById(articleById.getAuthorId()).getName();
+        return new ResponseArticleDTO(articleById, writer);
     }
 
     public List<ResponseArticleDTO> getArticles() {
@@ -37,14 +32,8 @@ public class ArticleService {
         List<Article> allArticles = articleRepository.getAllArticles();
 
         for (Article article : allArticles) {
-            ResponseArticleDTO responseArticleDTO = new ResponseArticleDTO(
-                    article.getTitle(),
-                    memberRepository.getMemberById(article.getAuthorId()).getName(),
-                    article.getContent(),
-                    article.getWriteDate()
-            );
-
-            responseArticleDTOList.add(responseArticleDTO);
+            String writer = memberRepository.getMemberById(article.getAuthorId()).getName();
+            responseArticleDTOList.add(new ResponseArticleDTO(article, writer));
         }
 
         return responseArticleDTOList;
@@ -55,16 +44,13 @@ public class ArticleService {
         List<Article> allArticles = articleRepository.getAllArticles();
 
         for (Article article : allArticles) {
-            ResponseArticleDTO responseArticleDTO = new ResponseArticleDTO(
-                    article.getTitle(),
-                    memberRepository.getMemberById(article.getAuthorId()).getName(),
-                    article.getContent(),
-                    article.getWriteDate()
-            );
+            String writer = memberRepository.getMemberById(article.getAuthorId()).getName();
+            ResponseArticleDTO responseArticleDTO = new ResponseArticleDTO(article, writer);
 
-            if (!responseArticleDTOMap.containsKey(boardRepository.getBoard(article.getBoardId()).getTitle()))
-                responseArticleDTOMap.put(boardRepository.getBoard(article.getBoardId()).getTitle(), new ArrayList<>());
-            responseArticleDTOMap.get(boardRepository.getBoard(article.getBoardId()).getTitle()).add(responseArticleDTO);
+            String boardName = boardRepository.getBoard(article.getBoardId()).getTitle();
+
+            if (!responseArticleDTOMap.containsKey(boardName)) responseArticleDTOMap.put(boardName, new ArrayList<>());
+            responseArticleDTOMap.get(boardName).add(responseArticleDTO);
         }
 
         return responseArticleDTOMap;
@@ -79,10 +65,7 @@ public class ArticleService {
         Article articleById = articleRepository.getArticleById(id);
         if (articleById == null) return false;
 
-        articleById.setTitle(articleDTO.getTitle());
-        articleById.setContent(articleDTO.getContent());
-        articleById.setModifiedDate(LocalDateTime.now());
-
+        articleById.updateArticle(articleDTO.getTitle(), articleDTO.getContent());
         return articleRepository.updateArticle(articleById);
     }
 

@@ -1,5 +1,7 @@
 package com.soundbar91.springMVC.dto;
 
+import com.soundbar91.springMVC.entity.Article;
+
 import java.time.LocalDateTime;
 
 public class ResponseArticleDTO {
@@ -8,14 +10,11 @@ public class ResponseArticleDTO {
     private String content;
     private LocalDateTime writeDate;
 
-    public ResponseArticleDTO() {
-    }
-
-    public ResponseArticleDTO(String title, String author, String content, LocalDateTime writeDate) {
-        this.title = title;
-        this.author = author;
-        this.content = content;
-        this.writeDate = writeDate;
+    public ResponseArticleDTO(Article article, String name) {
+        this.title = article.getTitle();
+        this.author = name;
+        this.content = article.getContent();
+        this.writeDate = article.getWriteDate();
     }
 
     public String getTitle() {
