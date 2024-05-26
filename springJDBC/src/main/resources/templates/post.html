@@ -1,0 +1,24 @@
+<!--TODO 조금만 꾸며보자-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Board Posts</title>
+</head>
+<body>
+<tr th:each = "entry : ${articles}">
+    <td th:text = "${entry.key}"></td>
+    <td>
+        <table class="table">
+            <tr th:each="article : ${entry.value}">
+                <td th:text = "${article.title()}"></td>
+                <td th:text = "${article.author_id()}"></td>
+                <td th:text = "|${article.created_date().getYear()}-${article.created_date().getMonthValue()}-${article.created_date().getDayOfMonth()}|"></td>
+                <td th:text = "${article.content()}"></td><br>
+            </tr>
+        </table>
+    </td>
+</tr>
+</body>
+</html>
