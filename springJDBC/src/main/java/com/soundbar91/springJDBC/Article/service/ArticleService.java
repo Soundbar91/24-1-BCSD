@@ -22,7 +22,6 @@ public class ArticleService {
         this.articleRepository = new JdbcTemplateArticleRepository(dataSource);
     }
 
-    @Transactional(readOnly = true)
     public List<ResponseArticleDTO> getArticleByBoardId(Long boardId) {
         List<ResponseArticleDTO> responseArticleDTOList = new ArrayList<>();
         List<Article> articlesByBoard = articleRepository.getArticlesByBoard(boardId);
@@ -33,7 +32,6 @@ public class ArticleService {
         return responseArticleDTOList;
     }
 
-    @Transactional(readOnly = true)
     public ResponseArticleDTO getArticleById(Long articleId) {
         return articleRepository.getArticleById(articleId)
                 .map(ResponseArticleDTO::of)

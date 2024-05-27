@@ -19,7 +19,6 @@ public class BoardService {
         this.boardRepository = new JdbcTemplateBoardRepository(dataSource);
     }
 
-    @Transactional(readOnly = true)
     public ResponseBoardDTO getBoardById(Long id) {
         return boardRepository.getBoardById(id)
                 .map(ResponseBoardDTO::of)

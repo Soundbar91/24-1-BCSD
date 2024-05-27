@@ -19,7 +19,6 @@ public class MemberService {
         this.memberRepository = new JdbcTemplateMemberRepository(dataSource);
     }
 
-    @Transactional(readOnly = true)
     public ResponseMemberDTO getMemberById(Long id) {
         return memberRepository.getMemberById(id)
                 .map(ResponseMemberDTO::of)
