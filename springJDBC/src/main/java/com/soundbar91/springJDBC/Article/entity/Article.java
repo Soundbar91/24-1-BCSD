@@ -58,17 +58,4 @@ public class Article {
     public LocalDateTime getModified_data() {
         return modified_data;
     }
-
-    @Override
-    public String toString() {
-        return "Article{" +
-                "id=" + id +
-                ", author_id=" + author_id +
-                ", board_id=" + board_id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", created_data=" + created_data +
-                ", modified_data=" + modified_data +
-                '}';
-    }
 }
