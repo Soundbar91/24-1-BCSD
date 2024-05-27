@@ -43,8 +43,8 @@ public class JdbcTemplateArticleRepository implements ArticleRepository {
 
     @Override
     public void updateArticle(Long id, Article updatedArticle) {
-        String sql = "UPDATE article SET title = ?, content = ?, modified_date = ? WHERE id = ?";
-        jdbcTemplate.update(sql, updatedArticle.getTitle(), updatedArticle.getContent(), updatedArticle.getModified_data(), id);
+        String sql = "UPDATE article SET board_id = ?, title = ?, content = ?, modified_date = ? WHERE id = ?";
+        jdbcTemplate.update(sql, updatedArticle.getBoard_id(), updatedArticle.getTitle(), updatedArticle.getContent(), updatedArticle.getModified_data(), id);
     }
 
     @Override
