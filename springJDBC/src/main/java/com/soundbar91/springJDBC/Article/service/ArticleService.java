@@ -6,6 +6,7 @@ import com.soundbar91.springJDBC.Article.entity.Article;
 import com.soundbar91.springJDBC.Article.repository.ArticleRepository;
 import com.soundbar91.springJDBC.Article.repository.JdbcTemplateArticleRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class ArticleService {
         this.articleRepository = new JdbcTemplateArticleRepository(dataSource);
     }
 
+    @Transactional(readOnly = true)
     public List<ResponseArticleDTO> getArticleByBoardId(Long boardId) {
         List<ResponseArticleDTO> responseArticleDTOList = new ArrayList<>();
         List<Article> articlesByBoard = articleRepository.getArticlesByBoard(boardId);
@@ -31,12 +33,14 @@ public class ArticleService {
         return responseArticleDTOList;
     }
 
+    @Transactional(readOnly = true)
     public ResponseArticleDTO getArticleById(Long articleId) {
         return articleRepository.getArticleById(articleId)
                 .map(ResponseArticleDTO::of)
                 .orElse(null);
     }
 
+    @Transactional
     public ResponseArticleDTO addArticle(RequestArticleDTO requestArticleDTO) {
         Article article = new Article(
                 requestArticleDTO.authorId(),
@@ -51,6 +55,7 @@ public class ArticleService {
         return ResponseArticleDTO.of(article);
     }
 
+    @Transactional
     public ResponseArticleDTO updateArticle(Long id, RequestArticleDTO requestArticleDTO) {
         Article article = articleRepository.getArticleById(id).orElse(null);
         if (article == null) return null;
@@ -67,6 +72,7 @@ public class ArticleService {
         }
     }
 
+    @Transactional
     public boolean deleteArticle(Long id) {
         return articleRepository.deleteArticle(id);
     }

@@ -6,6 +6,7 @@ import com.soundbar91.springJDBC.Board.entity.Board;
 import com.soundbar91.springJDBC.Board.repository.BoardRepository;
 import com.soundbar91.springJDBC.Board.repository.JdbcTemplateBoardRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 
@@ -18,12 +19,14 @@ public class BoardService {
         this.boardRepository = new JdbcTemplateBoardRepository(dataSource);
     }
 
+    @Transactional(readOnly = true)
     public ResponseBoardDTO getBoardById(Long id) {
         return boardRepository.getBoardById(id)
                 .map(ResponseBoardDTO::of)
                 .orElse(null);
     }
 
+    @Transactional
     public ResponseBoardDTO addBoard(RequestBoardDTO boardDTO) {
         Board board = new Board(boardDTO.title());
 
@@ -31,6 +34,7 @@ public class BoardService {
         return ResponseBoardDTO.of(board);
     }
 
+    @Transactional
     public ResponseBoardDTO updateBoard(Long id, RequestBoardDTO boardDTO) {
         Board board = boardRepository.getBoardById(id).orElse(null);
         if (board == null) return null;
@@ -40,6 +44,7 @@ public class BoardService {
         return ResponseBoardDTO.of(board);
     }
 
+    @Transactional
     public boolean deleteBoard(Long id) {
         return boardRepository.deleteBoard(id);
     }
