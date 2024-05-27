@@ -14,11 +14,11 @@ import java.util.concurrent.atomic.AtomicLong;
 public class JdbcTemplateBoardRepository implements BoardRepository {
 
     private final JdbcTemplate jdbcTemplate;
+    private static final AtomicLong autoincrement = new AtomicLong(1);
 
     public JdbcTemplateBoardRepository(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
-    private static final AtomicLong autoincrement = new AtomicLong(1);
 
     @Override
     public void addBoard(Board board) {
